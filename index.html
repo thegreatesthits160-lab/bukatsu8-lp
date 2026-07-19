@@ -102,7 +102,7 @@
     }
     .hero-title-en {
         font-family: var(--font-sans);
-        font-size: clamp(1.6rem, 9vw, 8rem);
+        font-size: clamp(1.3rem, 8vw, 8rem);
         font-weight: 900;
         line-height: 0.9;
         letter-spacing: -0.03em;
@@ -113,12 +113,18 @@
     .hero-title-ja {
         writing-mode: vertical-rl;
         font-family: var(--font-serif);
-        font-size: clamp(3.6rem, 13vw, 6rem);
+        font-size: clamp(4.6rem, 16vw, 6rem);
         font-weight: 800;
         line-height: 1;
         letter-spacing: -0.15em;
         text-align: right;
         margin: 0;
+    }
+    @media (max-width: 900px) {
+        .hero-main {
+            justify-content: flex-end;
+            gap: 24px;
+        }
     }
 
     .hero-bottom {
