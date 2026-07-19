@@ -102,7 +102,7 @@
     }
     .hero-title-en {
         font-family: var(--font-sans);
-        font-size: clamp(3rem, 10vw, 8rem);
+        font-size: clamp(1.6rem, 9vw, 8rem);
         font-weight: 900;
         line-height: 0.9;
         letter-spacing: -0.03em;
@@ -113,7 +113,7 @@
     .hero-title-ja {
         writing-mode: vertical-rl;
         font-family: var(--font-serif);
-        font-size: clamp(2.5rem, 8vw, 6rem);
+        font-size: clamp(3.6rem, 13vw, 6rem);
         font-weight: 800;
         line-height: 1;
         letter-spacing: -0.15em;
@@ -142,7 +142,7 @@
     @media (max-width: 900px) {
         .section-grid {
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 4px;
             padding: 60px 0;
         }
     }
@@ -168,6 +168,26 @@
         text-transform: uppercase;
         margin-top: 0;
         color: var(--accent-orange);
+    }
+    @media (max-width: 900px) {
+        .sec-meta {
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            background-color: var(--bg-color);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .sec-num {
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+        .sec-title {
+            font-size: 0.8rem;
+            margin: 0;
+        }
     }
 
     .sec-content {
