@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>島田伊智郎 演技ワークショップ【部活】第8期</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&display=swap');
+    /* -----------------------------------------
+       Reset & Design Variables
+       shhh.jpの特徴である、生成りと漆黒、極端な文字サイズ比
+    ----------------------------------------- */
+    :root {
+        --bg-color: #f6f5f1;       /* 高級紙のような深みのある生成り */
+        --text-main: #1a1a1a;      /* ほぼ黒に近い漆黒 */
+        --text-muted: #8c8a84;     /* 哀愁のある静かなグレー */
+        --border-color: #d1cfc8;   /* 繊細な細い境界線 */
+        --accent-orange: #d9772e;      /* アクセントのオレンジ */
+        --accent-orange-light: #f8e6d2; /* 薄いオレンジ（背景用） */
+        --font-serif: "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+        --font-sans: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        font-family: var(--font-serif);
+        line-height: 1.8;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 0.08em;
+        overflow-x: hidden;
+    }
+
+    /* 左右の固定外枠（モダンデザインのフレーム感） */
+    body::before, body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background-color: var(--border-color);
+        z-index: 100;
+    }
+    body::before { left: 4%; }
+    body::after { right: 4%; }
+
+    /* Layout Containers */
+    .wrapper {
+        padding: 0 8% 120px 8%;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* -----------------------------------------
+       Hero Header (極限のサイズ比)
+    ----------------------------------------- */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 60px;
+        padding-bottom: 100px;
+        position: relative;
+    }
+    .hero-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 24px;
+    }
+    .brand-title {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+    }
+    .term-badge {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        border: 1px solid var(--text-main);
+        padding: 4px 12px;
+    }
+
+    /* 巨大縦書きメインビジュアル */
+    .hero-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .hero-title-en {
+        font-family: var(--font-sans);
+        font-size: clamp(3rem, 10vw, 8rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--text-main);
+        margin: 0;
+    }
+    .hero-title-ja {
+        writing-mode: vertical-rl;
+        font-size: clamp(2.5rem, 8vw, 6rem);
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: 0.2em;
+        margin: 0;
+    }
+
+    .hero-bottom {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        font-family: var(--font-sans);
+    }
+
+    /* -----------------------------------------
+       Section Layouts (アシンメトリー設計)
+    ----------------------------------------- */
+    .section-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 80px;
+        padding: 120px 0;
+        border-top: 1px solid var(--border-color);
+    }
+    @media (max-width: 900px) {
+        .section-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            padding: 60px 0;
+        }
+    }
+
+    .sec-meta {
+        font-family: var(--font-sans);
+        position: sticky;
+        top: 60px;
+        height: fit-content;
+    }
+    .sec-num {
+        font-size: clamp(3rem, 6vw, 5rem);
+        font-weight: 300;
+        line-height: 1;
+        color: var(--text-muted);
+        opacity: 0.4;
+        margin-bottom: 8px;
+    }
+    .sec-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-top: 0;
+        color: var(--accent-orange);
+    }
+
+    .sec-content {
+        font-size: 1.05rem;
+        line-height: 2.2;
+    }
+    .sec-content p {
+        margin-top: 0;
+        margin-bottom: 40px;
+    }
+    .sec-content p:last-child { margin-bottom: 0; }
+
+    /* 強烈なメッセージブロック */
+    .statement {
+        font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+        line-height: 1.6;
+        letter-spacing: 0.1em;
+        margin-bottom: 60px;
+        font-weight: 500;
+    }
+
+    /* -----------------------------------------
+       Abstract Image Cut
+    ----------------------------------------- */
+    .image-block {
+        width: 100%;
+        overflow: hidden;
+        margin: 80px 0;
+        border: 1px solid var(--border-color);
+    }
+    .image-block img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        filter: grayscale(100%) contrast(110%);
+        transition: transform 0.8s ease;
+    }
+    .image-block:hover img {
+        transform: scale(1.03);
+    }
+
+    /* -----------------------------------------
+       Director Bio (写真＋紹介文)
+    ----------------------------------------- */
+    .director-bio-block {
+        position: relative;
+        margin-top: 60px;
+    }
+    .director-photo {
+        position: absolute;
+        top: 0;
+        right: 100%;
+        margin-right: 32px;
+        width: 220px;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+    }
+    .director-photo img {
+        width: 100%;
+        height: auto;
+        display: block;
+        filter: grayscale(100%) contrast(88%) brightness(104%);
+    }
+    @media (max-width: 900px) {
+        .director-bio-block {
+            position: static;
+        }
+        .director-photo {
+            position: static;
+            width: 160px;
+            margin-right: 0;
+            margin-bottom: 24px;
+        }
+    }
+
+    /* -----------------------------------------
+       Scroll Fade-in
+    ----------------------------------------- */
+    .fade-section {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 1.8s ease, transform 1.8s ease;
+    }
+    .fade-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* -----------------------------------------
+       Floating Apply Button（常時表示）
+    ----------------------------------------- */
+    .floating-apply-btn {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 999;
+        background-color: var(--accent-orange);
+        color: #fff;
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        padding: 16px 24px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        transition: background-color 0.3s, transform 0.2s;
+    }
+    .floating-apply-btn:hover {
+        background-color: #c2661f;
+        transform: translateY(-2px);
+    }
+    @media (max-width: 600px) {
+        .floating-apply-btn {
+            right: 12px;
+            bottom: 12px;
+            padding: 12px 18px;
+            font-size: 0.75rem;
+        }
+    }
+
+    /* -----------------------------------------
+       Eight Rules (8箇条のグリッド)
+    ----------------------------------------- */
+    .rules-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+    @media (max-width: 600px) {
+        .rules-grid { grid-template-columns: 1fr; }
+    }
+    .rule-card {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 24px;
+    }
+    .rule-num {
+        font-family: var(--font-sans);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+    }
+    .rule-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    /* -----------------------------------------
+       Tables & Information
+    ----------------------------------------- */
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+    }
+    .info-table tr {
+        border-bottom: 1px solid var(--border-color);
+    }
+    .info-table th {
+        text-align: left;
+        padding: 24px 16px 24px 0;
+        font-weight: 600;
+        width: 30%;
+        vertical-align: top;
+        color: var(--text-muted);
+    }
+    .info-table td {
+        padding: 24px 0 24px 16px;
+        vertical-align: top;
+        line-height: 1.8;
+    }
+
+    /* カレンダー日程リスト */
+    .schedule-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-family: var(--font-sans);
+    }
+    .schedule-list li {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px dashed var(--border-color);
+        font-size: 0.9rem;
+    }
+    .schedule-list span.day {
+        color: var(--text-muted);
+    }
+
+    /* -----------------------------------------
+       Call to Action (圧倒的ミニマリズム)
+    ----------------------------------------- */
+    .cta-section {
+        border: 1px solid var(--text-main);
+        background-color: var(--accent-orange-light);
+        padding: 80px 40px;
+        text-align: center;
+        margin-top: 100px;
+        position: relative;
+    }
+    .cta-section h2 {
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: normal;
+        margin-top: 0;
+        margin-bottom: 24px;
+    }
+    .cta-btn {
+        display: inline-block;
+        background-color: var(--accent-orange);
+        color: #fff;
+        padding: 20px 60px;
+        text-decoration: none;
+        font-family: var(--font-sans);
+        font-weight: bold;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-top: 40px;
+        transition: all 0.3s;
+    }
+    .cta-btn:hover {
+        background-color: transparent;
+        color: var(--accent-orange);
+        box-shadow: inset 0 0 0 1px var(--accent-orange);
+    }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <header class="hero">
+        <div class="hero-top">
+            <div class="brand-title">Shimada Ichiro / Acting Workshop</div>
+            <div class="term-badge">第8期</div>
+        </div>
+
+        <div class="hero-main">
+            <h1 class="hero-title-en">BUKATSU</h1>
+            <h2 class="hero-title-ja">役を生きる。</h2>
+        </div>
+
+        <div class="hero-bottom">
+            <div>2026.08 - 2027.01 [6 MONTHS]</div>
+            <div>SHIMADA ACTING METHOD</div>
+        </div>
+    </header>
+
+    <div class="section-grid fade-section">
+        <div class="sec-meta">
+            <div class="sec-num">01</div>
+            <h2 class="sec-title">Concept</h2>
+        </div>
+        <div class="sec-content">
+            <div class="statement">
+                あなたは目的地を決めず、<br>旅に出ますか？
+            </div>
+            <p>
+                行き先が定まっていないのに出かけても、どこにも辿り着けません。それと同じ状態で現場に立っていないでしょうか？現場で必要以上の緊張に襲われたり、演出に戸惑ったりするのはそのせいです。
+            </p>
+            <p>
+                作品づくりに関わる目的は、「観客にメッセージを届け、人生に影響を与えること」。台本を読み解き、目的から逆算して自分の『地図』を描く。本ワークショップでは、メソッドやテクニックの前に、絶対的に必要な「台本読解力」を徹底的に鍛え、プロを育成します。
+            </p>
+        </div>
+    </div>
+
+    <div class="image-block fade-section">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1400" alt="Dramatic shadow and architecture">
+    </div>
+
+    <div class="section-grid fade-section">
+        <div class="sec-meta">
+            <div class="sec-num">02</div>
+            <h2 class="sec-title">Philosophy</h2>
+        </div>
+        <div class="sec-content">
+            <h3>地図を持ったら、役に寄り添う。</h3>
+            <p>
+                歩くのは自分ではなく、演じる「役」です。その人生に寄り添うために、自分自身への問いかけを続けます。どんな感情の起伏であれ、再現性を保ち、監督の演出意図に即座に応えられる本物の技術を。
+            </p>
+
+            <h3>「演出しない」という強さ</h3>
+            <p>
+                講師が正解を与えることはありません。正解を握っているのは現場の監督だからです。代わりに、あらゆる演出に対応できる究極の「準備の方法」を共有します。
+            </p>
+
+            <h3>なぜ『部活』なのか</h3>
+            <p>
+                俳優を「個人のアートを表現する人」ではなく、作品を共に創り上げる職人の一員「俳優部」として育てる場。泥にまみれながらも一歩ずつ進む、あの熱い日々と同じ情熱で芝居を追い求めます。
+            </p>
+        </div>
+    </div>
+
+    <div class="section-grid fade-section">
+        <div class="sec-meta">
+            <div class="sec-num">03</div>
+            <h2 class="sec-title">Eight Rules</h2>
+        </div>
+        <div class="sec-content">
+            <p class="statement" style="font-size: 1.5rem;">私たちが大切にする、表現者のための8箇条。</p>
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <div class="rule-num">RULE 01</div>
+                    <h4 class="rule-title">参加者に寄り添う</h4>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">RULE 02</div>
+                    <h4 class="rule-title">演出はしない</h4>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">RULE 03</div>
+                    <h4 class="rule-title">個人の魅力を引き出す</h4>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">RULE 04</div>
+                    <h4 class="rule-title">本が読める俳優に</h4>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">RULE 05</div>
+                    <h4 class="rule-title">感情を導き出す</h4>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">RULE 06</div>
+                    <h4 class="rule-title">目標を明確にする</h4>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">RULE 07</div>
+                    <h4 class="rule-title">意識を高める</h4>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">RULE 08</div>
+                    <h4 class="rule-title">言語化力を上げる</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-grid fade-section">
+        <div class="sec-meta">
+            <div class="sec-num">04</div>
+            <h2 class="sec-title">Curriculum</h2>
+        </div>
+        <div class="sec-content">
+            <p>半年のスパンだからこそ到達できる、小手先ではない本格的な深化プロセス。</p>
+            <table class="info-table">
+                <tr>
+                    <th>08 —<br>AUGUST</th>
+                    <td>
+                        <strong>現在地の把握と設計</strong><br>
+                        6ヶ月の個別目標を明確に立て、現在地を自覚。「6つの基本読解」の基礎へと入ります。
+                    </td>
+                </tr>
+                <tr>
+                    <th>09-11 —<br>SEP-NOV</th>
+                    <td>
+                        <strong>論理的構築と現場再現性</strong><br>
+                        メソッド演技の系譜に触れながら、ショートテキストを使用して役の人生を徹底的に組み立てます。
+                    </td>
+                </tr>
+                <tr>
+                    <th>12 —<br>DECEMBER</th>
+                    <td>
+                        <strong>感情の昇華</strong><br>
+                        実体験のシナリオによる実践。頭の理解を超えた、役としての本物の状態・感情を体得します。
+                    </td>
+                </tr>
+                <tr>
+                    <th>01 —<br>JANUARY</th>
+                    <td>
+                        <strong>定着と送り出し</strong><br>
+                        これまでの成長を演技技術として定着させ、個人の課題を整理して、次の現場へと送り出します。
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section-grid fade-section">
+        <div class="sec-meta">
+            <div class="sec-num">05</div>
+            <h2 class="sec-title">Schedule</h2>
+        </div>
+        <div class="sec-content">
+            <h3>火曜クラス日程</h3>
+            <ul class="schedule-list" style="margin-bottom: 48px;">
+                <li><span>第1回 / 8月18日</span><span class="day">TUE</span></li>
+                <li><span>第2回 / 9月1日</span><span class="day">TUE</span></li>
+                <li><span>第3回 / 9月15日</span><span class="day">TUE</span></li>
+                <li><span>第4回 / 9月29日</span><span class="day">TUE</span></li>
+                <li><span>第5回 / 10月13日</span><span class="day">TUE</span></li>
+                <li><span>第6回 / 10月27日</span><span class="day">TUE</span></li>
+                <li><span>第7回 / 11月10日</span><span class="day">TUE</span></li>
+                <li><span>第8回 / 11月24日</span><span class="day">TUE</span></li>
+                <li><span>第9回 / 12月8日</span><span class="day">TUE</span></li>
+                <li><span>第10回 / 12月22日</span><span class="day">TUE</span></li>
+                <li><span>第11回 / 1/12日</span><span class="day">TUE</span></li>
+                <li><span>第12回 / 1/26日</span><span class="day">TUE</span></li>
+            </ul>
+
+            <h3>木曜クラス日程</h3>
+            <ul class="schedule-list">
+                <li><span>第1回 / 8月20日</span><span class="day">THU</span></li>
+                <li><span>第2回 / 9月3日</span><span class="day">THU</span></li>
+                <li><span>第3回 / 9月17日</span><span class="day">THU</span></li>
+                <li><span>第4回 / 10月1日</span><span class="day">THU</span></li>
+                <li><span>第5回 / 10月15日</span><span class="day">THU</span></li>
+                <li><span>第6回 / 10月29日</span><span class="day">THU</span></li>
+                <li><span>第7回 / 11月12日</span><span class="day">THU</span></li>
+                <li><span>第8回 / 11月26日</span><span class="day">THU</span></li>
+                <li><span>第9回 / 12月10日</span><span class="day">THU</span></li>
+                <li><span>第10回 / 12月24日</span><span class="day">THU</span></li>
+                <li><span>第11回 / 1/14日</span><span class="day">THU</span></li>
+                <li><span>第12回 / 1/28日</span><span class="day">THU</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-grid fade-section">
+        <div class="sec-meta">
+            <div class="sec-num">06</div>
+            <h2 class="sec-title">Outline</h2>
+        </div>
+        <div class="sec-content">
+            <table class="info-table">
+                <tr>
+                    <th>受講期間</th>
+                    <td>2026年8月〜2027年1月（全12回）</td>
+                </tr>
+                <tr>
+                    <th>時間枠</th>
+                    <td>両クラス共通 10:00 - 14:00 (4時間)<br><span style="font-size: 0.8rem; color: var(--text-muted);">※進捗状況により30分程度延長する場合があります。</span></td>
+                </tr>
+                <tr>
+                    <th>総定員</th>
+                    <td>2クラス合計 20名限定<br><span style="font-size: 0.8rem; color: var(--text-muted);">（少人数指導維持のため）</span></td>
+                </tr>
+                <tr>
+                    <th>受講費</th>
+                    <td>33,000円（税込・全教材費含む）<br><span style="font-size: 0.8rem; color: var(--text-muted);">一括、または分割（5,500円 × 6回）が選択可能</span></td>
+                </tr>
+                <tr>
+                    <th>決済方法</th>
+                    <td>メンバーペイによる決済<br><span style="font-size: 0.8rem; color: var(--text-muted);">（初回前日までにお手続き）</span><br><span style="font-size: 0.8rem; color: var(--text-muted);">※参加決定後あらためてご連絡します。</span></td>
+                </tr>
+                <tr>
+                    <th>場所</th>
+                    <td>都内（主に世田谷区内）の公共施設</td>
+                </tr>
+                <tr>
+                    <th>振替制度</th>
+                    <td>もう一方の曜日クラスへ振替可能（月またぎ調整可・次期への振替は不可）</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section-grid fade-section">
+        <div class="sec-meta">
+            <div class="sec-num">07</div>
+            <h2 class="sec-title">Director</h2>
+        </div>
+        <div class="sec-content">
+            <div class="statement" style="font-size: 1.6rem; line-height: 1.8;">
+                「弱さ」や「滑稽さ」にさえ寄り添える、そんな俳優になってほしい。
+            </div>
+            <p>
+                俳優が全力で「役の人生」を生き、どうしようもないほどの人間性をさらけ出す。その瞬間に、観客の心に本物の変化が生まれます。皆さんの成長の転機となる、忘れられない時間にしましょう。
+            </p>
+            <div class="director-bio-block">
+                <div class="director-photo">
+                    <img src="assets/shimada_portrait.png" alt="島田 伊智郎">
+                </div>
+                <h3 style="font-size: 1.4rem; margin-top: 0;">島田 伊智郎 <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-muted);">/ 映画監督・脚本家・指導者</span></h3>
+                <p style="font-family: var(--font-sans); font-size: 0.9rem; color: #555; line-height: 1.8;">
+                    映画『消えない虹』（各配信プラットフォームにて公開中）監督・脚本。<br>
+                    24年にわたり、日本映画界の第一線で多くの監督陣を支える助監督を歴任。2015年より演技ワークショップ主宰として独立し指導をスタート。過去7期に渡り、プロダクション所属俳優を含む延べ390名以上の指導実績を誇る。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-grid fade-section" style="border-bottom: 1px solid var(--border-color);">
+        <div class="sec-meta">
+            <div class="sec-num">08</div>
+            <h2 class="sec-title">Safety</h2>
+        </div>
+        <div class="sec-content" style="font-size: 0.95rem; color: #444;">
+            <p>
+                表現を自由に探求するために、心理的・肉体的な「安全な場」の確保を徹底しています。他者への敬意、ハラスメントの完全防止、指導時における身体接触の事前同意プロセスなど、業界基準以上のクリーンな環境を用意して皆様をお待ちしています。
+            </p>
+        </div>
+    </div>
+
+    <section class="cta-section fade-section">
+        <div class="brand-title" style="margin-bottom: 24px;">Apply Details</div>
+        <h2>【部活】第8期 応募要項</h2>
+        <p style="font-family: var(--font-sans); font-size: 0.95rem; line-height: 2;">
+            メール件名を「部活第8期応募」とし、本文に以下項目を記載のうえご応募ください。<br>
+            1. 氏名（芸名） / 2. 年齢 / 3. 所属（フリーはフリーと記載） / 4. 連絡先 / 5. 希望曜日（第2希望まで）<br>
+            ※ご自身のプロフィール資料（PDF等）を必ず添付してください。
+        </p>
+        <p style="color: #d93025; font-weight: bold; font-family: var(--font-sans); margin-top: 32px;">
+            応募締切：2026年8月17日（月）17:00 まで<br>
+            <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">※定員（各10名）に達し次第、期日前でも受付を締め切ります。</span>
+        </p>
+
+        <a href="mailto:shimada.workshop@gmail.com" class="cta-btn">メールで応募・問い合わせ</a>
+        <p style="margin-top: 24px; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted);">
+            shimada.workshop@gmail.com
+        </p>
+    </section>
+
+</div>
+
+<a href="mailto:shimada.workshop@gmail.com" class="floating-apply-btn">メールで応募・問い合わせ</a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const targets = document.querySelectorAll('.fade-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+        targets.forEach((el) => observer.observe(el));
+    });
+</script>
+
+</body>
+</html>
